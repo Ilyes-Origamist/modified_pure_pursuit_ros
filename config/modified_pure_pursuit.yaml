@@ -1,0 +1,12 @@
+
+# TODO: Define configuration parameters for the modified pure pursuit controller.
+modified_pure_pursuit_ros:
+  strategy: "pursuit_strategy_1"  # or "pursuit_strategy_2"
+  controller_type: "lyapunov"  # or "sliding_mode"
+  gains:
+    lyapunov:
+      k1: 1.0
+      k2: 2.0
+    sliding_mode:
+      lambda: 1.0
+      eta: 0.5

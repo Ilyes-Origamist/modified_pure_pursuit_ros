@@ -1,0 +1,32 @@
+<launch>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/> <!-- Inert - see gazebo_ros_pkgs issue #491 -->
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+
+  <!-- Spawning the robot model in Gazebo -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'" /> 
+
+  <!-- Spawn the robot in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-param robot_description -urdf -model turtlebot3" />  
+
+  <param name="robot_description_gazebo" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_burger.gazebo.xacro'" />
+
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" /> -->
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0"/>
+    <param name="publish_tf" type="bool" value="true"/>
+  </node>
+
+   <!-- rviz launch -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find modified_pure_pursuit_ros)/config/pure_pursuit.rviz" />
+
+</launch>
