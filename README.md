@@ -6,6 +6,9 @@ In this project, I propose a simple approach that applies nonlinear control for 
 
 <img src="docs/demo_720p.gif" width="720" />
 
+The details are provided in `docs/documentation.md`, as weel as on Medium:
+[Medium Post](https://medium.com/@chaabeni.ilyes2002/pure-pursuit-reference-generation-and-control-for-a-differential-robot-321452e04a6e)
+
 ## Overview
 The goal is to compute the reference velocities $v_r$ and $\omega_r$ and reference pose $(x_r, y_r, \theta_r)$ using the lookahead point and current position, then apply any type of controller (low level) for speed control. 
 
